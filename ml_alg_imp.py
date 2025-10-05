@@ -3,12 +3,12 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-from preprocess_without_class import
+from preprocess_without_class import Pre
 
 # Load and preprocess the dataset
 
 
-df
+
 X_processed, y_processed = pre.preprocess_data(df, target_col=target_column, apply_pca_flag=True)
 
 # Split data
