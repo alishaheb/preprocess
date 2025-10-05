@@ -75,19 +75,24 @@ print("Classification Report:\n", report)
 cm = confusion_matrix(y_test, y_pred)
 print("Confusion Matrix:\n", cm)
 
-# Plot the confusion matrix
-plt.figure()
+# Plot the confusion matrix like a table
+plt.figure(figsize=(6, 4))
 plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
 plt.title("Confusion Matrix")
 plt.colorbar()
-# Define tick marks based on unique target values
 tick_marks = range(len(set(y)))
-plt.xticks(tick_marks, rotation=45)
-plt.yticks(tick_marks)
-plt.xlabel('Predicted Label')
-plt.ylabel('True Label')
+plt.xticks(tick_marks, tick_marks)
+plt.yticks(tick_marks, tick_marks)
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+thresh = cm.max() / 2.
+for i, j in zip(*cm.nonzero()):
+    plt.text(j, i, format(cm[i, j], 'd'),
+             horizontalalignment="center",
+             color="white" if cm[i, j] > thresh else "black")
 plt.tight_layout()
 plt.show()
+
 
 # Additional Evaluation: ROC Curve and AUC
 if hasattr(model, "predict_proba"):
